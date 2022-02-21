@@ -1,0 +1,38 @@
+export CONTRACT_NAME=contract.spread.testnet
+echo $CONTRACT_NAME
+
+near view contract.spread.testnet get_num '{}'
+near call contract.spread.testnet increment '{}' --accountId spread.testnet --amount 2
+near view contract.spread.testnet get_users '{}'
+
+
+
+near dev-deploy -f out/main.wasm  - деплой нового контракта чтоб не делать миграцию
+
+export CONTRACT_NAME=dev-1644433678195-58699302756227
+near view dev-1644433678195-58699302756227 get_users '{}'
+near call dev-1645298596441-49400940453218 new '{}' --accountId spread.testnet 
+
+near call dev-1645306392913-78328273555583 make_new_insurance '{"contract_address": "dev-1645124837301-75384962392237", "nft_id": "1", "media": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Olympus_Mons_alt.jpg/1024px-Olympus_Mons_alt.jpg", "image_hash": "HGJGJFGjkHFDRD"}' --accountId spread.testnet --amount 1.5
+
+near call dev-1645306392913-78328273555583 new '{}' --accountId spread.testnet
+
+near view dev-1645306392913-78328273555583 get_insurance_data '{"contract_address": "dev-1645124837301-75384962392237", "nft_id": "1"}' --accountId spread.testnet  --amount 0
+
+near view dev-1645306392913-78328273555583 get_hash_image_nft '{"contract_address": "dev-1645124837301-75384962392237", "nft_id": "1"}' --accountId spread.testnet  
+
+near view dev-1645306392913-78328273555583 is_agent '{"agent_address": "agent_addressABC"}'
+
+near call dev-1645306392913-78328273555583 set_agent '{"agent_address": "agent_addressABC"}' --accountId spread.testnet 
+
+near view dev-1645306392913-78328273555583 get_insurance_item '{"hash": "4ac380c3945719c3abc3ad775846c3aac3bc5ac2b611c2b1c3af74c2a2c391c38836c392c298756336c291c2ad786bc380"}'
+
+
+near view dev-1645306392913-78328273555583 get_hash_nft '{"contract_address": "dev-1645124837301-75384962392237", "nft_id": "1"}'
+
+near view dev-1645306392913-78328273555583 is_expire_insurance '{"contract_address": "dev-1645124837301-75384962392237", "nft_id": "1"}'
+
+near view dev-1645306392913-78328273555583 is_insurance_case '{"contract_address": "dev-1645124837301-75384962392237", "nft_id": "1", "current_nft_image_hash": "HGJGJFGjkHFDRD"}'
+
+near call dev-1645306392913-78328273555583 get_owner_address_nft '{"contract_address": "dev-1645124837301-75384962392237", "nft_id": "0" }' --accountId spread.testnet  
+near call dev-1645306392913-78328273555583 get_owner_address_of_nft '{"contract_address": "dev-1645124837301-75384962392237", "nft_id": "0" }' --accountId spread.testnet  
